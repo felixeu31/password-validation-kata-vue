@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import PasswordValidatorForm from './components/PasswordValidatorForm.vue';
 </script>
 
 <template>
