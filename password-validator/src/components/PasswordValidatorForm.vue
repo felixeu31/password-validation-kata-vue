@@ -5,7 +5,11 @@
         <input :placeholder="labels.InputPlaceHolder" v-model="password">
         <button @click="validatePassword">{{ labels.ValidateButton_Text }}</button>
       </section>
-      <span>{{ error }}</span>
+      <article>
+        <ul>
+          <li :key="error" v-for="error in errors">{{ error }}</li>
+        </ul>
+      </article>
     </div>
   </template>
   
@@ -28,15 +32,18 @@
       labels: LABELS,
       errorMessages: ERRORMESSAGES,
       password: '',
-      error: ''
+      error: '',
+      errors: new Array<string>()
     }),
     methods: {
       validatePassword (){
         if (this.password.length < 8) {
           this.error = this.errorMessages.TooShort;
+          this.errors.push(this.errorMessages.TooShort)
         }
         if (!this.password.match(/\d+/)){
           this.error = this.errorMessages.NoNumbers;
+          this.errors.push(this.errorMessages.NoNumbers)
         }
       }
     }
