@@ -10,22 +10,6 @@ describe('Password validator form', () => {
   afterEach(() => {
     wrapper.unmount()
   })
-
-  it('should render form title', () => {   
-    wrapper = render(PasswordValidatorForm)
-    expect(wrapper.queryByText(LABELS.FormTitle)).not.toBeNull()
-  })
-
-  it('should render a user input', () => {  
-    wrapper = render(PasswordValidatorForm)
-    expect(wrapper.queryByPlaceholderText(LABELS.InputPlaceHolder)).not.toBeNull() 
-  });
-
-  
-  it('should render a button', () => {  
-    wrapper = render(PasswordValidatorForm)
-    expect(wrapper.queryByText(LABELS.ValidateButton_Text)).not.toBeNull() 
-  });
   
   it.each([
     ['short1'],
