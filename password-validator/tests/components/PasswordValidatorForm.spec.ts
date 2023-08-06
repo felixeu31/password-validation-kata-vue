@@ -46,4 +46,15 @@ describe('Password validator form', () => {
     expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
     expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).not.toBeNull()
   });
+
+  
+  it('should show both errors only once when password is empty and click the button twice', async (password: string) => {
+    wrapper = render(PasswordValidatorForm)
+
+    await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))    
+    await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
+
+    expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
+    expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).not.toBeNull()
+  });
 })
