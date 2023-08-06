@@ -37,4 +37,13 @@ describe('Password validator form', () => {
 
     expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).not.toBeNull()
   });
+
+  it('should show both errors when password is empty', async (password: string) => {
+    wrapper = render(PasswordValidatorForm)
+
+    await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
+
+    expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
+    expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).not.toBeNull()
+  });
 })
