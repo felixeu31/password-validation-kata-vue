@@ -21,4 +21,9 @@ describe('Password validator form', () => {
   it('should render a user input', () => {  
     expect(wrapper.queryByPlaceholderText('Introduce tu contraseña')).not.toBeNull() 
   });
+
+  
+  it('should render a button', () => {  
+    expect(wrapper.queryByText('Enviar consulta')).not.toBeNull() 
+  });
 })
