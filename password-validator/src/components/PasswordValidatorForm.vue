@@ -10,6 +10,11 @@
           <li :key="error" v-for="error in errors">{{ error }}</li>
         </ul>
       </article>
+      <article>
+        <ul>
+          <li :key="validPassword" v-for="validPassword in validPasswords">{{ validPassword }}</li>
+        </ul>
+      </article>
     </div>
   </template>
   
@@ -32,7 +37,8 @@
       labels: LABELS,
       errorMessages: ERRORMESSAGES,
       password: '',
-      errors: new Array<string>()
+      errors: new Array<string>(),
+      validPasswords: new Array<string>()
     }),
     methods: {
       validatePassword (){
@@ -43,6 +49,10 @@
         }
         if (!this.password.match(/\d+/)){
           this.errors.push(this.errorMessages.NoNumbers)
+        }
+
+        if (this.errors.length === 0) {
+          this.validPasswords.push(this.password);
         }
       }
     }
