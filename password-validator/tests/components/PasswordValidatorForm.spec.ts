@@ -72,4 +72,19 @@ describe('Password validator form', () => {
     expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
     expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).not.toBeNull()
   });
+
+  
+  it.each([
+    ['password1234']
+  ])('should show correct password in list', async (password: string) => {
+    wrapper = render(PasswordValidatorForm)
+
+    await userEvent.click(wrapper.getByPlaceholderText(LABELS.InputPlaceHolder))
+    await userEvent.keyboard(password)
+    await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
+
+    expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).toBeNull()
+    expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).toBeNull()
+    expect(wrapper.queryByText(password)).not.toBeNull()
+  });
 })
