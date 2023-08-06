@@ -35,7 +35,7 @@
         if (this.password.length < 8) {
           this.error = this.errorMessages.TooShort;
         }
-        if (this.password == 'password'){
+        if (!this.password.match(/\d+/)){
           this.error = this.errorMessages.NoNumbers;
         }
       }
