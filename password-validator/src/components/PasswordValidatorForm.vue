@@ -32,17 +32,14 @@
       labels: LABELS,
       errorMessages: ERRORMESSAGES,
       password: '',
-      error: '',
       errors: new Array<string>()
     }),
     methods: {
       validatePassword (){
         if (this.password.length < 8) {
-          this.error = this.errorMessages.TooShort;
           this.errors.push(this.errorMessages.TooShort)
         }
         if (!this.password.match(/\d+/)){
-          this.error = this.errorMessages.NoNumbers;
           this.errors.push(this.errorMessages.NoNumbers)
         }
       }
