@@ -31,7 +31,7 @@
     }),
     methods: {
       validatePassword (){
-        if (this.password == 'short1') {
+        if (this.password.length < 8) {
           this.error = this.errorMessages.TooShort;
         }
       }
