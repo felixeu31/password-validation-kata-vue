@@ -48,6 +48,21 @@ describe('Password validator form', () => {
   });
 
   
+  it.each([
+    ['passwo'],
+    ['short']
+  ])('should show both errors when invalid password {%s}', async (password: string) => {
+    wrapper = render(PasswordValidatorForm)
+
+    await userEvent.click(wrapper.getByPlaceholderText(LABELS.InputPlaceHolder))
+    await userEvent.keyboard(password)
+    await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
+
+    expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
+    expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).not.toBeNull()
+  });
+
+  
   it('should show both errors only once when password is empty and click the button twice', async (password: string) => {
     wrapper = render(PasswordValidatorForm)
 
