@@ -36,6 +36,8 @@
     }),
     methods: {
       validatePassword (){
+        this.errors = new Array<string>()
+
         if (this.password.length < 8) {
           this.errors.push(this.errorMessages.TooShort)
         }
