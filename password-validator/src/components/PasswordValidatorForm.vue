@@ -3,6 +3,7 @@
     <div>
       <section class="password-form">
         <input placeholder="Introduce tu contraseña">
+        <button>Enviar consulta</button>
       </section>
     </div>
   </template>
