@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach, beforeEach } from 'vitest'
 import { render, type RenderResult } from '@testing-library/vue';
-import PasswordValidatorForm from '@/components/PasswordValidatorForm.vue';
+import PasswordValidatorForm, { LABELS, ERRORMESSAGES } from '@/components/PasswordValidatorForm.vue';
 import userEvent from '@testing-library/user-event'
 
 describe('Password validator form', () => {
@@ -13,27 +13,27 @@ describe('Password validator form', () => {
 
   it('should render form title', () => {   
     wrapper = render(PasswordValidatorForm)
-    expect(wrapper.queryByText('Password Validator')).not.toBeNull()
+    expect(wrapper.queryByText(LABELS.FormTitle)).not.toBeNull()
   })
 
   it('should render a user input', () => {  
     wrapper = render(PasswordValidatorForm)
-    expect(wrapper.queryByPlaceholderText('Introduce tu contraseña')).not.toBeNull() 
+    expect(wrapper.queryByPlaceholderText(LABELS.InputPlaceHolder)).not.toBeNull() 
   });
 
   
   it('should render a button', () => {  
     wrapper = render(PasswordValidatorForm)
-    expect(wrapper.queryByText('Enviar consulta')).not.toBeNull() 
+    expect(wrapper.queryByText(LABELS.ValidateButton_Text)).not.toBeNull() 
   });
 
   it('should show an error when password is to short', async () => {
     wrapper = render(PasswordValidatorForm)
 
-    await userEvent.click(wrapper.getByPlaceholderText('Introduce tu contraseña'))
+    await userEvent.click(wrapper.getByPlaceholderText(LABELS.InputPlaceHolder))
     await userEvent.keyboard('short1')
-    await userEvent.click(wrapper.getByText('Enviar consulta'))
+    await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
 
-    expect(wrapper.queryByText('Password should have at leat 8 characters')).not.toBeNull()
+    expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
   });
 })
