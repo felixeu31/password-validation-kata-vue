@@ -28,7 +28,8 @@ describe('Password validator form', () => {
   });
   
   it.each([
-    ['short1']
+    ['short1'],
+    ['short2']
   ])('should show an error when password is to short', async (password: string) => {
     wrapper = render(PasswordValidatorForm)
 
