@@ -26,12 +26,14 @@ describe('Password validator form', () => {
     wrapper = render(PasswordValidatorForm)
     expect(wrapper.queryByText(LABELS.ValidateButton_Text)).not.toBeNull() 
   });
-
-  it('should show an error when password is to short', async () => {
+  
+  it.each([
+    ['short1']
+  ])('should show an error when password is to short', async (password: string) => {
     wrapper = render(PasswordValidatorForm)
 
     await userEvent.click(wrapper.getByPlaceholderText(LABELS.InputPlaceHolder))
-    await userEvent.keyboard('short1')
+    await userEvent.keyboard(password)
     await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
 
     expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
