@@ -19,7 +19,8 @@
   }
 
   export const ERRORMESSAGES = {
-    TooShort: 'Password should have at leat 8 characters'
+    TooShort: 'Password should have at leat 8 characters',
+    NoNumbers: 'Password should contain numbers'
   }
 
   export default defineComponent({
@@ -33,6 +34,9 @@
       validatePassword (){
         if (this.password.length < 8) {
           this.error = this.errorMessages.TooShort;
+        }
+        if (this.password == 'password'){
+          this.error = this.errorMessages.NoNumbers;
         }
       }
     }

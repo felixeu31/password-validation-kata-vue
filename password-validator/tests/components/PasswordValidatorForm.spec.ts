@@ -31,7 +31,7 @@ describe('Password validator form', () => {
     ['short1'],
     ['short2'],
     ['1234567']
-  ])('should show an error when password is to short', async (password: string) => {
+  ])('should show an error when password is to short, using password {%s}', async (password: string) => {
     wrapper = render(PasswordValidatorForm)
 
     await userEvent.click(wrapper.getByPlaceholderText(LABELS.InputPlaceHolder))
@@ -39,5 +39,17 @@ describe('Password validator form', () => {
     await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
 
     expect(wrapper.queryByText(ERRORMESSAGES.TooShort)).not.toBeNull()
+  });
+
+  it.each([
+    ['password']
+  ])('should show an error when password does not have numbers, using password {%s}', async (password: string) => {
+    wrapper = render(PasswordValidatorForm)
+
+    await userEvent.click(wrapper.getByPlaceholderText(LABELS.InputPlaceHolder))
+    await userEvent.keyboard(password)
+    await userEvent.click(wrapper.getByText(LABELS.ValidateButton_Text))
+
+    expect(wrapper.queryByText(ERRORMESSAGES.NoNumbers)).not.toBeNull()
   });
 })
